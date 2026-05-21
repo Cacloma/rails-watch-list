@@ -1,0 +1,12 @@
+<%= form_with model: [list, bookmark], local: true do |f| %>
+  <% if bookmark.errors.any? %>
+  <% bookmark.errors.full_messages.each do |msg| %>
+  <%= msg %>
+  <% end %>
+<% end %>
+<%= f.label :movie_id, "Film" %>
+<%= f.collection_select :movie_id, Movie.order(:title), :id, :title, prompt: "Choisir un film", class: "form-select" %>
+<%= f.label :comment, "Commentaire" %>
+<%= f.text_area :comment, rows: 3, class: "form-control" %>
+<%= f.submit "Ajouter", class: "btn btn-primary" %>
+<% end %>

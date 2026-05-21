@@ -1,1 +1,3 @@
-<h1> new bookmark </h1>
+<%= render "form", list: @list, bookmark: @bookmark %>
+
+<%= link_to "Annuler", list_path(@list) %>
