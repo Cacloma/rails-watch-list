@@ -1,3 +1,14 @@
 <%= render "form", list: @list, bookmark: @bookmark %>
 
 <%= link_to "Annuler", list_path(@list) %>
+<% if @list.bookmarks.any? %>
+  <% @list.bookmarks.includes(:movie).each do |bookmark| %>
+  <%= bookmark.movie.title %>
+  <%= bookmark.movie.rating %>
+  <%= bookmark.comment %>
+  <%= button_to "Retirer", bookmark_path(bookmark), method: :delete, data: { confirm: "Supprimer ce signet ?" }, class: "btn btn-outline-danger btn-sm" %>
+<% end %>
+  <% else %>
+Pas encore de films dans cette liste
+<% end %>
+<%= render "bookmarks/form", list: @list, bookmark: @bookmark %>
